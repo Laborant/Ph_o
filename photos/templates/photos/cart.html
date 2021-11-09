@@ -1,0 +1,13 @@
+{% extends 'photos/base.html' %}
+
+{% block title %}Корзина{% endblock %}
+
+{% block content %}
+
+    <form action="AddPhoto" method="post">
+    {% csrf_token %}
+    {{ form.AddPhoto }}
+    <input type="submit" value="Submit">
+</form>
+
+{% endblock %}

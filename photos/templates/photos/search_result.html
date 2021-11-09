@@ -1,0 +1,20 @@
+<!-- templates/photos/home.html -->
+{% extends 'photos/base.html' %}
+
+{% block title %}Поиск фото{% endblock %}
+
+{% block content %}
+    <center>
+    {% if searched %}
+        <h1>Вы искали {{ searched }}</h1>
+
+    {% else %}
+        <h1>Hey! Похоже у тебя не получилось найти {{ searched }}</h1>
+    {% endif %}
+
+
+
+
+    </center>
+
+{% endblock %}
