@@ -1,0 +1,18 @@
+#System files
+/Ph_o/.idea
+/static
+/8db.sqlite31331
+/55db.sqlite3
+/66db.sqlite3
+/db.sqlite3
+/cart/migrations/
+/photos/migrations/
+/core/migrations/
+/.env
+/venv/
+/Ph_o/cart/migrations/
+/Ph_o/photos/migrations/
+/Ph_o/66db.sqlite3
+/Ph_o/8db.sqlite31331
+/Ph_o/db.sqlite3
+/Ph_o/55db.sqlite3
