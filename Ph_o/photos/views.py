@@ -87,15 +87,14 @@ def add_photo(request):
                 tags.photo = img
                 tags.save()
 
-
         return redirect('gallery')
 
     context = {'categories': categories}
 
     return render(request, 'photos/add.html', context)
 
-def search(request):
 
+def search(request):
     if request.method == "POST":
         searched = request.POST.get('searched', True)
         tags = Photo.objects.filter(tags__name=searched)
@@ -111,11 +110,14 @@ def search(request):
                       )
     return render(request, 'photos/search_result.html', )
 
+
 def profile(request):
     return render(request, 'photos/user_profile.html', )
 
+
 def login(request):
     return render(request, 'photos/login.html')
+
 
 def tags_list(request):
     tags = Tags.objects.all()

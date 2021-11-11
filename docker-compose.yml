@@ -10,6 +10,7 @@ services:
       - ./ph_o:/ph_o
     command: >
       sh -c "python3 manage.py wait_for_db &&
+             python3 manage.py drop_db&&
              python3 manage.py makemigrations&&
              python3 manage.py migrate&&
              python3 manage.py runserver 0.0.0.0:8000"
