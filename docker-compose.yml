@@ -25,8 +25,6 @@ services:
     depends_on:
       - db
   db:
-    ports:
-      - "5432:5432"
     image: postgres:13-alpine
     environment:
       - DB_HOST=db
