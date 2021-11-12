@@ -10,7 +10,7 @@ services:
       - ./ph_o:/ph_o
     command: >
       sh -c "python3 manage.py wait_for_db &&
-             python3 manage.py makemigrations&&
+             python3 manage.py makemigrations photos&&
              python3 manage.py migrate&&
              python3 manage.py runserver 0.0.0.0:8000"
 
@@ -25,6 +25,8 @@ services:
     depends_on:
       - db
   db:
+    ports:
+      - "5432:5432"
     image: postgres:13-alpine
     environment:
       - DB_HOST=db

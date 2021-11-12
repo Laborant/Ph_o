@@ -161,11 +161,15 @@ STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+# AWS_DEFAULT_ACL = None
 
 AWS_QUERYSTRING_AUTH = False
 
-AUTH_USER_MODEL = 'photos.RunUser'
+#AUTH_USER_MODEL = 'photos.RunUser'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 CART_SESSION_ID ='cart'
+
+DJANGO_ADMIN_LOGS_ENABLED = False
+
