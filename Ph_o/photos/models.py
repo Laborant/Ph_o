@@ -39,7 +39,15 @@ class Photo(models.Model):
 
 
 class RunUser(AbstractUser):
+    ROLE_CHOICES = (
+        ('admin', 'Админ'),
+        ('customer', 'Клиент'),
+        ('photographer', 'Фотограф'),
+    )
+
     email = models.EmailField(unique=True)
+    role = models.CharField(max_length=30, verbose_name='Роль', choices=ROLE_CHOICES, default='customer')
+
     # is_author = models.BooleanField(default=False)
     # first_name = models.TextField (blank=None)
     # bib_number = models.CharField(max_length=6)
