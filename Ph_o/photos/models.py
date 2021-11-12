@@ -11,8 +11,8 @@ def generateUUID():
 class Category(models.Model):
     id = models.CharField(max_length=225, unique=True, blank=False,
         null=False, default=uuid4, primary_key=True)
-#    name = models.CharField(max_length=100, null=True,
-#                            blank=True)
+    name = models.CharField(max_length=100, null=False,
+                            blank=False)
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -22,7 +22,7 @@ class Category(models.Model):
 class Photo(models.Model):
     id = models.CharField(max_length=225, unique=True, blank=False, null=False,
         default=uuid4, primary_key=True)
-#    name = models.CharField(max_length=100, null=True, blank=True)
+    name = models.CharField(max_length=100, null=False, blank=False)
     image = models.ImageField(null=False, blank=False)
     # description = models.TextField(null=False, blank=False)
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена')
@@ -53,7 +53,7 @@ class Photo(models.Model):
 #     amount = models.CharField(blank=False, null=False, max_length=22)
 
 class Tags(models.Model):
-#    name = models.CharField(max_length=100, null=True)
+    name = models.CharField(max_length=100, null=False)
     photo = models.ForeignKey(Photo, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
