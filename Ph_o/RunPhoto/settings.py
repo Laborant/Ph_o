@@ -165,7 +165,7 @@ AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
 
 AWS_QUERYSTRING_AUTH = False
 
-#AUTH_USER_MODEL = 'photos.RunUser'
+AUTH_USER_MODEL = 'photos.RunUser'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
@@ -173,11 +173,7 @@ CART_SESSION_ID ='cart'
 
 DJANGO_ADMIN_LOGS_ENABLED = False
 
-
-
 #Configure Emails
-
-
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = os.environ.get('EMAIL_HOST')

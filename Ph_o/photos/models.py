@@ -40,8 +40,8 @@ class Photo(models.Model):
 
 class RunUser(AbstractUser):
     email = models.EmailField(unique=True)
-    is_author = models.BooleanField(default=False)
-    first_name = models.TextField (blank=None)
+    # is_author = models.BooleanField(default=False)
+    # first_name = models.TextField (blank=None)
     # bib_number = models.CharField(max_length=6)
 
     class Meta:
