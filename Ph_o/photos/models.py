@@ -38,15 +38,15 @@ class Photo(models.Model):
         return self.tags
 
 
-class RunUser(AbstractUser):
-    email = models.EmailField(unique=True)
-    # is_author = models.BooleanField(default=False)
-    # first_name = models.TextField (blank=None)
-    # bib_number = models.CharField(max_length=6)
-
-    class Meta:
-        verbose_name = ('Пользователь')
-        verbose_name_plural = ('Пользователи')
+# class RunUser(AbstractUser):
+#     email = models.EmailField(unique=True)
+#     # is_author = models.BooleanField(default=False)
+#     # first_name = models.TextField (blank=None)
+#     # bib_number = models.CharField(max_length=6)
+#
+#     class Meta:
+#         verbose_name = ('Пользователь')
+#         verbose_name_plural = ('Пользователи')
 
 
 # class Order(models.Model):

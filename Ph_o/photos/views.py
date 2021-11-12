@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Category, Photo, RunUser, Tags
+from .models import Category, Photo,  Tags
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .tag_finder import TagFinder
 
