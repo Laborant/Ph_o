@@ -7,7 +7,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./ph_o:/ph_o
+      - ./Ph_o:/Ph_o
     command: >
       sh -c "python3 manage.py wait_for_db &&
              python3 manage.py makemigrations&&
