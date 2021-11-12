@@ -38,22 +38,22 @@ class Photo(models.Model):
         return self.tags
 
 
-# class RunUser(AbstractUser):
-#     email = models.EmailField(unique=True)
-#     # is_author = models.BooleanField(default=False)
-#     # first_name = models.TextField (blank=None)
-#     # bib_number = models.CharField(max_length=6)
-#
-#     class Meta:
-#         verbose_name = ('Пользователь')
-#         verbose_name_plural = ('Пользователи')
+class RunUser(AbstractUser):
+    email = models.EmailField(unique=True)
+    is_author = models.BooleanField(default=False)
+    first_name = models.TextField (blank=None)
+    # bib_number = models.CharField(max_length=6)
+
+    class Meta:
+        verbose_name = ('Пользователь')
+        verbose_name_plural = ('Пользователи')
 
 
 # class Order(models.Model):
 #     amount = models.CharField(blank=False, null=False, max_length=22)
 
 class Tags(models.Model):
-    name = models.CharField(max_length=100, null=False)
+    # name = models.CharField(max_length=100, null=False)
     photo = models.ForeignKey(Photo, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):

@@ -5,13 +5,12 @@
 /55db.sqlite3
 /66db.sqlite3
 /db.sqlite3
-/cart/migrations/
-/photos/migrations/
-/core/migrations/
+*/migrations/*
+!*/migrations/__init__.py
+*/Ph_o/migrations/*
+!*/Ph_o/migrations/__init__.py
 /.env
 /venv/
-/Ph_o/cart/migrations/
-/Ph_o/photos/migrations/
 /Ph_o/66db.sqlite3
 /Ph_o/8db.sqlite31331
 /Ph_o/db.sqlite3
@@ -21,4 +20,3 @@
 /Ph_o/.idea/modules.xml
 /Ph_o/.idea/vcs.xml
 /Ph_o/.env
-/Ph_o/core/migrations/__init__.py
