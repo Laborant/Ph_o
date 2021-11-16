@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from .models import Category, Photo,  Tags
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .tag_finder import TagFinder
+from django.http import HttpResponse
+
 
 # Create your views here.
 
@@ -49,8 +51,12 @@ def base(request):
     return render(request, 'photos/base.html', context)
 
 def home(request):
+    categories = Category.objects.all()
     photo = Photo.objects.all()
-    context = {'photo': photo}
+    context = {
+        'photo': photo,
+        'categories': categories
+    }
 
     return render(request, 'photos/home.html', context)
 
@@ -63,8 +69,6 @@ def add_photo(request):
         images = request.FILES.getlist('images')
         tags = request.POST.get('tags')
         tags = tags.split(', ')
-        # print(tags)
-        # print(type(tags))
 
         # Check Category
         if 'category' in data:
@@ -82,10 +86,7 @@ def add_photo(request):
                 image=image)
 
             for tag in tags:
-
-                tags = Tags.objects.get_or_create(name=tags)[0]
-                tags.photo = img
-                tags.save()
+                img.tags.add(Tags.objects.get_or_create(name=tag)[0])
 
         return redirect('gallery')
 
@@ -96,10 +97,20 @@ def add_photo(request):
 
 def search(request):
     if request.method == "POST":
-        searched = request.POST.get('searched', True)
-        tags = Photo.objects.filter(tags__name=searched)
-        photo = Photo.objects.all()
-        context = {'photo': photo}
+        tag_num = request.POST.get('tag_num', True)
+        category = request.POST.get('category_id', True)
+        try:
+            tag = Tags.objects.get(name=tag_num)
+            category = Category.objects.get(id=category)
+        except:
+            return render(request,
+                          'photos/search_result.html',
+                          )
+
+        photos = Photo.objects.filter(tags=tag, category=category)
+
+        context = {'photos': photos,
+                   'tag_num': tag_num}
 
         return render(request,
                       'photos/search_result.html',
@@ -108,7 +119,6 @@ def search(request):
         return render(request,
                       'photos/search_result.html',
                       )
-    return render(request, 'photos/search_result.html', )
 
 
 def profile(request):

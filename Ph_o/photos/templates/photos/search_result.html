@@ -5,8 +5,41 @@
 
 {% block content %}
     <center>
-    {% if searched %}
-        <h1>Вы искали {{ searched }}</h1>
+    {% if tag_num %}
+        <h1>Вы искали {{ tag_num }}</h1>
+
+        <div class="col-md-9">
+
+          <div class="row">
+            {% for photo in photos %}
+            <div class="col-md-3">
+              <div class="card mb-3">
+                <img
+                  src="{{ photo.image.url }}"
+                  class="image-thumbnail"
+                  alt="{{ photo.name }}"
+                />
+                <div class="card-body">
+                  <small class="card-text"
+                    >Событие: {{ photo.category.name }}<br>
+                     Стартовый номер: {{ tag_num }}</small
+                  >
+                </div>
+                <a
+                  href="{% url 'photo' photo.id %}"
+                  class="btn btn-outline-dark btn-sm m-1"
+                  >Купить за: {{ photo.price }} руб</a
+                >
+              </div>
+            </div>
+            {% empty %}
+            <h3>No photos...</h3>
+            {% endfor %}
+          </div>
+
+        </div>
+      </div>
+    </div>
 
     {% else %}
         <h1>Hey! Похоже у тебя не получилось найти {{ searched }}</h1>
