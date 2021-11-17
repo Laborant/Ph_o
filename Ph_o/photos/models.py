@@ -62,7 +62,7 @@ class RunUser(AbstractUser):
 #     amount = models.CharField(blank=False, null=False, max_length=22)
 
 class Tags(models.Model):
-    name = models.CharField(max_length=100, null=False)
+    name = models.CharField(max_length=100, null=True, blank=True)
     # photo = models.ForeignKey(Photo, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):

@@ -86,7 +86,9 @@ def add_photo(request):
                 image=image)
 
             for tag in tags:
-                img.tags.add(Tags.objects.get_or_create(name=tag)[0])
+                # return HttpResponse(tag)
+                tag = Tags.objects.get_or_create(name=tag)[0]
+                img.tags.add(tag)
 
         return redirect('gallery')
 
@@ -108,9 +110,32 @@ def search(request):
                           )
 
         photos = Photo.objects.filter(tags=tag, category=category)
+        phs = photos.values("tags", "id")
+        # return HttpResponse(phs)
+        num_dict = dict()
+
+        for ph in phs:
+
+            num_str = ""
+
+            tag = ph['tags']
+            # tags_lst = str(tag).split(',')
+
+
+            nums = Tags.objects.filter(id=tag).values("name")
+            for num in nums:
+                num_str += f"{num['name']}, "
+            num_dict.update({'photo': ph['id'], 'tags': num_str})
+
+
+
+
+
+
 
         context = {'photos': photos,
-                   'tag_num': tag_num}
+                   'tag_num': tag_num,
+                   'num_dict': num_dict}
 
         return render(request,
                       'photos/search_result.html',

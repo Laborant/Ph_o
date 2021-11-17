@@ -22,7 +22,9 @@
                 <div class="card-body">
                   <small class="card-text"
                     >Событие: {{ photo.category.name }}<br>
-                     Стартовый номер: {{ tag_num }}</small
+                     Стартовый номер: {% for number in num_dict %}
+                                        {%if photo.id == number.photo%}
+                                           {{number.tags}} {% endif%} {%endfor%}</small
                   >
                 </div>
                 <a
