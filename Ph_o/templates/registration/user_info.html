@@ -1,9 +1,6 @@
-<!-- templates/photos/home.html -->
-{% extends 'photos/base.html' %}
-
-{% block title %}Домашняя страница{% endblock %}
-
-{% block content %}
+<!-- templates/base.html -->
+<!DOCTYPE html>
+{% load static %}
 
 <div class="container">
 
@@ -151,40 +148,3 @@
         </div>
     </div>
 </div>
-
-    <center>
-        <div class="col-md-9">
-
-          <div class="row">
-            {% for photo in photos %}
-            <div class="col-md-3">
-              <div class="card mb-3">
-                <img
-                  src="{{ photo.image.url }}"
-                  class="image-thumbnail"
-                  alt="{{ photo.name }}"
-                />
-                <div class="card-body">
-                  <small class="card-text"
-                    >Событие: {{ photo.category.name }}<br>
-                     Стартовый номер: {% for number in num_dict %}
-                                        {%if photo.id == number.photo%}
-                                           {{number.tags}} {% endif%} {%endfor%}</small
-                  >
-                </div>
-                <a
-                  href="{% url 'photo' photo.id %}"
-                  class="btn btn-outline-dark btn-sm m-1"
-                  >Купить за: {{ photo.price }} руб</a>
-              </div>
-            </div>
-            {% empty %}
-                <h3>No photos...</h3>
-            {% endfor %}
-          </div>
-
-        </div>
-      </div>
-    </div>
-    </center>
-{% endblock %}
