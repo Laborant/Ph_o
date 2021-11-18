@@ -3,7 +3,7 @@ from .models import Category, Photo,  Tags
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .tag_finder import TagFinder
 from django.http import HttpResponse
-
+from datetime import datetime
 
 # Create your views here.
 
@@ -68,14 +68,20 @@ def add_photo(request):
         data = request.POST
         images = request.FILES.getlist('images')
         tags = request.POST.get('tags')
+        hold_date = request.POST.get('hold_date', False)
         tags = tags.split(', ')
+        # event_date = datetime.now()
+        if hold_date:
+            event_date = datetime.strptime(hold_date, "%Y-%m-%d")
+
 
         # Check Category
         if 'category' in data:
             category = Category.objects.get(id=data['category'])
         elif data['category_new'] != '':
             category, created = Category.objects.get_or_create(
-                name=data['category_new'])
+                name=data['category_new'],
+                hold_date=event_date )
         else:
             category = None
 
@@ -127,10 +133,15 @@ def search(request):
                 num_str += f"{num['name']}, "
             num_dict.update({'photo': ph['id'], 'tags': num_str})
 
+        if category.hold_date:
+            hold_date = category.hold_date.strftime("%m-%d-%Y, %H:%M:%S").split(', ')[0]
+        else:
+            hold_date = ''
+
         context = {'photos': photos,
                    'tag_num': tag_num,
                    'category': category.name,
-                   'created': category.created.strftime("%m-%d-%Y, %H:%M:%S").split(', ')[0],
+                   'created': hold_date,
                    'photos_num': photos.count(),
                    'num_dict': num_dict,}
 

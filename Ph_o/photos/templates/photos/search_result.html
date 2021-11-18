@@ -178,10 +178,9 @@
                   >
                 </div>
                 <a
-                  href="{% url 'photo' photo.id %}"
+                  href="photo/{{ photo.id }}"
                   class="btn btn-outline-dark btn-sm m-1"
-                  >Купить за: {{ photo.price }} руб</a
-                >
+                  >Купить за: {{ photo.price }} руб</a>
               </div>
             </div>
             {% empty %}
