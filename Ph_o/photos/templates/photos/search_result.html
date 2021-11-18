@@ -110,7 +110,7 @@
         <div class="head-result-row">
             <div class="head-result-col head-result-date">
             <span class="head-result-date-name">
-                {{ "photo.category.name" }}</span>
+                {{ category }} / {{ created }}</span>
                 <span class="head-result-date-text">{{ category.name }}</span>
             </div>
 <!--            <div class="head-result-col head-result-selfie">-->
@@ -120,11 +120,11 @@
                 <span class="head-result-value">{{ tag_num }}</span>
             </div>
             <div class="head-result-col head-result-surname">
-                <span class="head-result-value">-</span>
+                <span class="head-result-value">{{ category }}</span>
             </div>
 
             <div class="head-result-col head-result-photo">
-                <span class="head-result-value"><span class="head-result-photo-text"></span>0</span>
+                <span class="head-result-value"><span class="head-result-photo-text"></span>{{ photos_num }}</span>
             </div>
             <div class="head-result-col head-result-btn">
 

@@ -127,15 +127,12 @@ def search(request):
                 num_str += f"{num['name']}, "
             num_dict.update({'photo': ph['id'], 'tags': num_str})
 
-
-
-
-
-
-
         context = {'photos': photos,
                    'tag_num': tag_num,
-                   'num_dict': num_dict}
+                   'category': category.name,
+                   'created': category.created.strftime("%m-%d-%Y, %H:%M:%S").split(', ')[0],
+                   'photos_num': photos.count(),
+                   'num_dict': num_dict,}
 
         return render(request,
                       'photos/search_result.html',
