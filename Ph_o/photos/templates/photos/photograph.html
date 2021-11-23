@@ -1,0 +1,122 @@
+<!-- templates/photos/home.html -->
+{% extends 'photos/base.html' %}
+
+{% block title %}Фотографам{% endblock %}
+
+
+{% block content %}
+
+<style>
+    p {
+    color: #1b1919;
+    font-weight: 300;
+    }
+
+    .social {
+    text-align: center;
+    padding-bottom: 25px;
+    }
+
+</style>
+
+
+<div class="content">
+    <div class="plain-text">
+        <div class="container">
+            <div class="content">
+                <div class="plain-text">
+                    <div class="h6">&nbsp;</div>
+                    <p>Если ты не равнодушен к спорту, хочешь в команду профессионалов и у тебя есть опыт и соответствующая техника, то заполни форму обратной связи и мы обязательно свяжемся с тобой!</p>
+                </div> <br>
+
+                <form method="post" action="" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-md-6">
+
+                                <div class="card p-3">
+                                    {% if error %}
+                                    <div class="alert alert-danger">{{error}}</div>
+                                    {% endif %}
+
+                                    <div class="form-group m-3">
+
+                                        <label>Телефон</label>
+                                        <input
+                                                type="text"
+                                                name="phone"
+                                                placeholder="Логин"
+                                                class="form-control"
+                                                required
+                                        />
+                                    </div>
+                                    <div class="form-group m-3">
+                                        <label>Ваша почта</label>
+                                        <input
+                                                type="text"
+                                                name="email"
+                                                placeholder="example@gmail.com"
+                                                class="form-control"
+                                                required
+                                        />
+                                    </div>
+                                    <div class="form-group m-3">
+                                        <label>Имя</label>
+                                        <input
+                                                type="text"
+                                                name="name"
+                                                placeholder="Как к Вам обращаться?"
+                                                multiple class="form-control"
+                                                required
+                                        />
+                                    </div>
+                                    <div class="form-group m-3">
+                                        <label>Опыт работы</label>
+                                        <input
+                                                type="text"
+                                                name="workstage"
+                                                placeholder="Какой у Вас стаж?"
+                                                multiple class="form-control"
+                                                required
+                                        />
+                                    </div>
+                                    <div class="form-group m-3">
+                                        <label>Фотоаппаратура</label>
+                                        <input
+                                                type="textarea"
+                                                name="comment"
+                                                placeholder="Что используете для съемок"
+                                                multiple class="form-control"
+                                                required
+                                        />
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary m-3">Отправить</button>
+
+                                </div>
+                                <p>Вы можете связаться с нами любым удобным способом</p>
+
+                                <center>
+                                <script src="https://code.iconify.design/2/2.1.0/iconify.min.js"></script>
+                                <a href="https://wa.me/+79216428492"><span class="iconify"  data-icon="ion:logo-whatsapp" style="color: #e30613;" data-width="68"></span></a>
+                                <a href="https://t.me/+79216428492"><span class="iconify" data-icon="ion:send-sharp" style="color: #e30613;" data-width="68" data-rotate="135deg"></span></a>
+                                <a href="mailto:artem.svh@gmail.com"><span class="iconify" data-icon="mdi:gmail" style="color: #e30613;" data-width="68"></span></a>
+                                </center>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

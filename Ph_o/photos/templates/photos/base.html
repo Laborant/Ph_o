@@ -203,29 +203,17 @@
                     <nav class="mx-auto site-navigation">
                         <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
                             <li><a href="{% url 'home' %}" class="nav-link active">Главная</a></li>
-                            <li><a href="{% url 'gallery' %}">События</a></li>
+                            <li><a href="{% url 'list_competention' %}">События</a></li>
                             <li class="has-children">
-                                <a href="{% url 'add' %}">Фотографам</a>
-                                <ul class="dropdown">
-                                    <li><a href="job-single.html">Организаторам</a></li>
-                                    <li><a href="post-job.html">Контакты</a></li>
-                                </ul>
+                                <a href="{% url 'photograph' %}">Фотографам</a>
+<!--                                <ul class="dropdown">-->
+<!--                                    <li><a href="{% url 'home' %}">Организаторам</a></li>-->
+<!--                                    <li><a href="{% url 'home' %}">Контакты</a></li>-->
+<!--                                </ul>-->
                             </li>
-{#                                          <li class="has-children">#}
-{#                                            <a href="services.html">Pages</a>#}
-{#                                            <ul class="dropdown">#}
-{#                                              <li><a href="services.html">Services</a></li>#}
-{#                                              <li><a href="service-single.html">Service Single</a></li>#}
-{#                                              <li><a href="blog-single.html">Blog Single</a></li>#}
-{#                                              <li><a href="portfolio.html">Portfolio</a></li>#}
-{#                                              <li><a href="portfolio-single.html">Portfolio Single</a></li>#}
-{#                                              <li><a href="testimonials.html">Testimonials</a></li>#}
-{#                                              <li><a href="faq.html">Frequently Ask Questions</a></li>#}
-{#                                              <li><a href="gallery.html">Gallery</a></li>#}
-{#                                            </ul>#}
-{#                                          </li>#}
-                            <li><a href="blog.html">Огранизаторам</a></li>
-                            <li><a href="contact.html">Контакты</a></li>
+
+                            <li><a href="{% url 'organisators' %}">Огранизаторам</a></li>
+                            <li><a href="{% url 'contact' %}">Контакты</a></li>
 <!--                            <li class="d-lg-none"><a href="post-job.html"><span class="mr-2">+</span> Корзина</a></li>-->
 <!--                            <li class="bi bi-person-bounding-box"><a href="login.html">Вход</a></li>-->
                         </ul>
@@ -264,7 +252,7 @@
 
 </head>
 
-<div class="mt-5">
+<div class="mt-2">
 <body>
 
 {#<main>#}

@@ -15,8 +15,11 @@ urlpatterns = [
     path('user_profile', views.profile, name='profile'),
     path('login', views.login, name='login'),
     path('tags/', views.tags_list, name='tags_list_url'),
-    path('cart/', views.cart, name='cart')
-
+    path('cart/', views.cart, name='cart'),
+    path('photograph/', views.photograph, name='photograph'),
+    path('organisators/', views.organisators, name='organisators'),
+    path('list_competention/', views.list_competention, name='list_competention'),
+    path('contact/', views.contact, name='contact')
 
 ]
 

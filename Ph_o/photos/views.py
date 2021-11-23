@@ -172,3 +172,20 @@ def cart(request):
     return render(request, 'photos/cart.html', )
 
 
+
+def photograph(request):
+    return render(request, 'photos/photograph.html', )
+
+
+
+def organisators(request):
+    return render(request, 'photos/organisators.html', )
+
+
+def list_competention(request):
+    return render(request, 'photos/list_competention.html', )
+
+
+def contact(request):
+    return render(request, 'photos/contact.html', )
+
