@@ -183,7 +183,24 @@ def organisators(request):
 
 
 def list_competention(request):
-    return render(request, 'photos/list_competention.html', )
+
+
+    category = request.GET.get('category')
+    categories = Category.objects.all()
+
+
+
+    # if category.hold_date:
+    #     hold_date = category.hold_date.strftime("%m-%d-%Y, %H:%M:%S").split(', ')[0]
+    # else:
+    #     hold_date = ''
+
+
+    context = {'categories': categories,}
+               # 'created': hold_date,}
+
+
+    return render(request, 'photos/list_competention.html', context)
 
 
 def contact(request):

@@ -3,4 +3,26 @@
 {% block title %}Расписание соревнований{% endblock %}
 
 {% block content %}
+
+<center>
+    <h3>Календарь событий</h3><br>
+    <div class="col-md-9">
+
+
+        {% for category in categories %}
+        <div class="row">
+
+            <span class="table">
+                {{ category }} / {{ created }}</span>
+            <!--            <span class="head-result-date-text">{{ category.name }}</span>-->
+        </div>
+
+        {% endfor %}
+        </div>
+
+    </div>
+    </div>
+    </div>
+</center>
+
 {% endblock %}
