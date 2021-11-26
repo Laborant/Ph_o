@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'RunPhoto',
     'lk',
     'users',
+    'payments',
 ]
 
 MIDDLEWARE = [
@@ -184,3 +185,8 @@ EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL')
 DEFAULT_TO_EMAIL = os.environ.get('DEFAULT_TO_EMAIL')
+
+
+API_SERVER_URL = 'http://127.0.0.1:8000/'
+YOOKASSA_ID = os.environ.get('YOOKASSA_ID')
+YOOKASSA_KEY = os.environ.get('YOOKASSA_KEY')

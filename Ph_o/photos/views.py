@@ -196,8 +196,10 @@ def list_competention(request):
     #     hold_date = ''
 
 
-    context = {'categories': categories,}
-               # 'created': hold_date,}
+    context = {
+        'categories': categories,
+        # 'created': hold_date,
+    }
 
 
     return render(request, 'photos/list_competention.html', context)

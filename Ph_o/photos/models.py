@@ -2,7 +2,8 @@ from django.db import models
 from uuid import uuid4
 from django.contrib.auth.models import User, AbstractUser
 from django.contrib import admin
-
+import random
+import string
 #Create your models here.
 
 def generateUUID():
@@ -76,3 +77,59 @@ class Tags(models.Model):
 # class PotoTag(models.Model):
 #     photo = models.ForeignKey(Photo, on_delete = models.CASCADE)
 #     tags = models.ForeignKey(Tags, on_delete = models.CASCADE)
+
+class Invoice(models.Model):
+    user = models.ForeignKey(RunUser, on_delete=models.SET_NULL, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_paid = models.BooleanField(default=False)
+    amount = models.DecimalField(max_digits=11, decimal_places=2, default=0)
+    identify_code = models.CharField(max_length=50, verbose_name='Уникальний код', null=True, blank=True)
+    # photo_collection = models.ManyToManyField('PhotoCollection', verbose_name="Коллекция", blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.identify_code:
+            code = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(48))
+            try:
+                Invoice.objects.get(identify_code=code)
+                code = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(48))
+                try:
+                    Invoice.objects.get(identify_code=code)
+                    code = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(48))
+                    try:
+                        Invoice.objects.get(identify_code=code)
+                    except Invoice.DoesNotExist:
+                        self.identify_code = code
+                except Invoice.DoesNotExist:
+                    self.identify_code = code
+            except Invoice.DoesNotExist:
+                self.identify_code = code
+        super(Invoice, self).save(*args, **kwargs)
+
+    def __str__(self):
+        if self.user:
+            return f'{self.user.email}'
+        return str(self.id)
+
+    class Meta:
+        verbose_name = 'Инвойс'
+        verbose_name_plural = 'Инвойсы'
+
+
+class PhotoToBuy(models.Model):
+    user = models.ForeignKey(RunUser, on_delete=models.SET_NULL, null=True, blank=True)
+    photo = models.ForeignKey(Photo, on_delete=models.CASCADE, null=True, blank=True)
+    invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE, null=True, blank=True)
+    is_bought = models.BooleanField(default=False)
+    is_archive = models.BooleanField(default=False)
+    tag = models.ForeignKey(Tags, on_delete=models.CASCADE, null=True, blank=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
+    amount = models.DecimalField(max_digits=11, decimal_places=2, default=0, null=True, blank=True)
+
+
+    def __str__(self):
+        return str(self.id)
+
+    class Meta:
+        verbose_name = 'Фото на продажу'
+        verbose_name_plural = 'Фотографии на продажу'
+
