@@ -1,82 +1,90 @@
+{% extends 'photos/base.html' %}
+
+{% block title %}Корзина{% endblock %}
+
+{% block content %}
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--  <head>-->
+<!--    <meta charset="UTF-8" />-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0" />-->
+<!--    &lt;!&ndash; CSS only &ndash;&gt;-->
+<!--    <link-->
+<!--      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"-->
+<!--      rel="stylesheet"-->
+<!--      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"-->
+<!--      crossorigin="anonymous"-->
+<!--    />-->
+<!--    <title>Photo</title>-->
+
+<body class="m-6">
+<center>
+<div class="card" style="width: 78rem;">
+    <div class="card-body">
+        <div class="table-responsive-scroll">
+            <div class="table_width"></div>
+        </div>
+        <center><h2>Ваша корзина</h2></center>
+        <div class="table-responsive">
+
+            <table class="table dataTable competentions_list_table">
+
+                <thead>
+                <tr>
+                    <th scope="col">Событие / дата</th>
+                    <th scope="col">Номер участника</th>
+                    <th scope="col">Категория</th>
+                    <th scope="col">Цена</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for archive_photo in archive_photos %}
+
+                <tr>
+                    <th class="category">{{ archive_photo.category.name }}</th>
+                    <th class="category">{{ archive_photo.tag.name }}</th>
+                    <th class="category">Архив</th>
+                    <th class="category">{{ archive_photo.amount }}</th>
+                </tr>
+                {% endfor %}
+                {% for photo in photos %}
+                <tr>
+                    <th class="category">{{ photo.category.name }}</th>
+                    <th class="category">{{ photo.tag.name }}</th>
+                    <th class="category">Архив</th>
+                    <th class="category">{{ photo.amount }}</th>
+                </tr>
+
+                {% endfor %}
+                <tfoot class="pt-4">
+                <tr>
+                    <th colspan="8" class="text-right" scope="col">Всего позиций:</th>
+                    <th  scope="col" class="total_amount_cell">{{ photos_count }}</th>
+                </tr>
+                <tr>
+                    <th colspan="8" class="text-right" scope="col">Сумма всего:</th>
+                    <th  scope="col" class="total_amount_cell">{{ full_amount }}</th>
+
+                </tr>
+                <form action="http://127.0.0.1:8080/payments/order/" method="post">
+                    {% csrf_token %}
+                    <input type = "hidden" name="photos_count" id="photos_count" value="{{photos_count}}">
+                    <input type = "hidden" name="full_amount" id="full_amount" value="{{full_amount}}">
+
+                </form>
+
+                </tfoot>
+
+                </tbody>
+
+            </table>
+            <button type="submit" class="btn btn-block btn-danger">Оформить заказ</button>
+        </div>
 
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- CSS only -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
-      crossorigin="anonymous"
-    />
-    <title>Photo</title>
-  </head>
-  <body class="m-5">
-  <div class="card">
-      <div class="card-body">
-                  <div class="table-responsive-scroll">
-                      <div class="table_width"></div>
-                  </div>
-                  <div class="table-responsive">
+    </div> <!-- end card-body-->
+</div> <!-- end card-->
+</center>
 
-                    <table class="table dataTable students_list_table">
-
-                        <thead>
-                            <tr>
-                                <th scope="col">Событие / дата</th>
-                                <th scope="col">Номер участника</th>
-                                <th scope="col">Категория</th>
-                                <th scope="col">Цена</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for archive_photo in archive_photos %}
-
-                            <tr>
-                                      <th class="category">{{ archive_photo.category.name }}</th>
-                                      <th class="category">{{ archive_photo.tag.name }}</th>
-                                      <th class="category">Архив</th>
-                                      <th class="category">{{ archive_photo.amount }}</th>
-                            </tr>
-                            {% endfor %}
-                            {% for photo in photos %}
-                            <tr>
-                                      <th class="category">{{ photo.category.name }}</th>
-                                      <th class="category">{{ photo.tag.name }}</th>
-                                      <th class="category">Архив</th>
-                                      <th class="category">{{ photo.amount }}</th>
-                            </tr>
-
-                            {% endfor %}
-                        <tfoot class="pt-4">
-                            <tr>
-                                <th colspan="8" class="text-right" scope="col">Всего позиций:</th>
-                                <th  scope="col" class="total_amount_cell">{{ photos_count }}</th>
-                            </tr>
-                            <tr>
-                                <th colspan="8" class="text-right" scope="col">Сумма всего:</th>
-                                <th  scope="col" class="total_amount_cell">{{ full_amount }}</th>
-
-                            </tr>
-                            <form action="http://127.0.0.1:8080/payments/order/" method="post">
-                                {% csrf_token %}
-                                <input type = "hidden" name="photos_count" id="photos_count" value="{{photos_count}}">
-                                <input type = "hidden" name="full_amount" id="full_amount" value="{{full_amount}}">
-                                <button type="submit" class="btn btn-block btn-dark">Оформить заказ</button>
-                            </form>
-                        </tfoot>
-
-                        </tbody>
-                    </table>
-
-                  </div>
-
-
-      </div> <!-- end card-body-->
-  </div> <!-- end card-->
-
-
-  </body>
+{%endblock%}
