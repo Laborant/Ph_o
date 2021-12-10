@@ -103,6 +103,10 @@ def add_photo(request):
     return render(request, 'photos/add.html', context)
 
 
+def upd_photo(request):
+
+    return render(request, 'photos/upd_photo.html')
+
 def search(request):
     if request.method == "POST":
         tag_num = request.POST.get('tag_num', True)

@@ -1,0 +1,54 @@
+<!-- templates/photos/home.html -->
+{% extends 'photos/base.html' %}
+
+{% block title %}Изменить цены{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-4">
+          <a href="{% url 'gallery' %}" class="btn btn-dark my-3">Назад</a>
+
+
+              <div class="form-group m-3">
+                <label>Цена за 1 фото</label>
+                <input
+                  type="text"
+                  name="price"
+                  placeholder="Укажите новую цену"
+                  class="form-control"
+                  required
+                />
+              </div>
+              <div class="form-group m-3">
+                <label>Цена за коллекцию</label>
+                <input
+                  type="text"
+                  name="col_price"
+                  placeholder="Укажите цену за коллекцию"
+                  multiple class="form-control"
+{#                  required#}
+                />
+              </div>
+              <div class="form-group m-3">
+                <label>Выберите соревнование</label>
+                <select name="category" class="form-control">
+                  <option value="none" selected disabled hidden>...</option>
+
+                  {% for category in categories %}
+                  <option value="{{category.id}}" class="text-capitalize">
+                    {{ category.name }}
+                  </option>
+                  {% endfor %}
+                </select>
+              </div>
+
+              <button type="submit" class="btn btn-primary m-3">Сохранить</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+</html>
