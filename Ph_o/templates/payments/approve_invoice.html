@@ -1,25 +1,33 @@
+{% extends 'photos/base.html' %}
+
+{% block title %}Оплата{% endblock %}
+
+{% block content %}
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--  <head>-->
+<!--    <meta charset="UTF-8" />-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0" />-->
+<!--    &lt;!&ndash; CSS only &ndash;&gt;-->
+<!--    <link-->
+<!--      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"-->
+<!--      rel="stylesheet"-->
+<!--      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"-->
+<!--      crossorigin="anonymous"-->
+<!--    />-->
+<!--    <title>Photo</title>-->
+<!--  </head>-->
 
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- CSS only -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
-      crossorigin="anonymous"
-    />
-    <title>Photo</title>
-  </head>
-  <body class="m-5">
-  <div class="card">
+  <body class="m-6">
+  <center>
+  <div class="card" style="width: 78rem;">
       <div class="card-body">
                   <div class="table-responsive-scroll">
                       <div class="table_width"></div>
                   </div>
+                <center><h2>Оплата</h2></center>
                   <div class="table-responsive">
 
                     <table class="table dataTable students_list_table">
@@ -61,13 +69,15 @@
                                 {% csrf_token %}
                                 <input type = "hidden" name="photos_to_buy" id="photos_to_buy" value="{{photos_to_buy}}">
                                 <input type = "hidden" name="full_amount" id="full_amount" value="{{full_amount}}">
-                                <button type="submit" class="btn btn-block btn-dark">Оплатить</button>
+<!--                                <button type="submit" class="btn btn-danger">Оплатить</button>-->
                             </form>
                         </tfoot>
 
                         </tbody>
                     </table>
-
+                      <div class="grp-submit-row">
+                          <button type="submit" class="btn btn-danger">Оплатить</button>
+                      </div>
                   </div>
 
 
@@ -76,3 +86,6 @@
 
 
   </body>
+
+ </center>
+{%endblock%}
