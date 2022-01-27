@@ -7,4 +7,6 @@ from payments import views
 urlpatterns = [
     path('cart/', views.CartView.as_view(), name='cart'),
     path('order/', views.ApproveInvoice.as_view(), name='order'),
+
+
 ]

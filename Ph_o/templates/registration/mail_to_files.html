@@ -1,0 +1,20 @@
+
+
+
+{% block content %}
+
+	{% load crispy_forms_tags %}          
+
+	<!--Reset Password-->
+	<div class="form-group m-3">
+  	 	<h2 class="font-weight-bold mt-3">Отправить архив по почте</h2>
+		<hr>
+		<p>Укажите свой адрес электронной почты ниже, и мы вышлем на него Ваш архив.</p>
+        <form method="POST">
+            {% csrf_token %}
+            {{ password_reset_form|crispy }}                    
+            <button class="btn btn-primary" type="submit">Отправить</button>
+        </form>
+  	</div> 
+
+{% endblock %}

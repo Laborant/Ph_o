@@ -253,3 +253,12 @@ def list_competention(request):
 def contact(request):
     return render(request, 'photos/contact.html', )
 
+
+def files(request):
+    return render(request, 'payments/files.html', )
+
+def myview(request):
+
+   template_name='registration/mail_to_files'
+
+   return render(request, template_name,)

@@ -1,0 +1,117 @@
+{% extends 'photos/base.html' %}
+
+{% block title %}Ваши фото{% endblock %}
+
+{% block content %}
+
+
+<body class="m-6">
+<center>
+<div class="card" style="width: 78rem;">
+    <div class="card-body">
+        <div class="table-responsive-scroll">
+            <div class="table_width"></div>
+        </div>
+        <center><h2>Ваши фото</h2></center>
+        <div class="table-responsive">
+
+            <table class="table dataTable competentions_list_table">
+
+                <thead>
+                <tr>
+                    <th scope="col">Событие / дата</th>
+                    <th scope="col">Номер участника</th>
+                    <th scope="col">Категория</th>
+                    <th scope="col">Всего в архиве</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for archive_photo in archive_photos %}
+
+                <tr>
+                    <th class="category">{{ archive_photo.category.name }}</th>
+                    <th class="category">{{ archive_photo.tag.name }}</th>
+                    <th class="category">Архив</th>
+                    <th class="category">{{ archive_photo.amount }}</th>
+                </tr>
+                {% endfor %}
+                {% for photo in photos %}
+                <tr>
+                    <th class="category">{{ photo.category.name }}</th>
+                    <th class="category">{{ photo.tag.name }}</th>
+                    <th class="category">Архив</th>
+                    <th class="category">{{ photo.amount }}</th>
+                </tr>
+
+                {% endfor %}
+                <tfoot class="pt-4">
+                <tr>
+                    <th colspan="8" class="text-right" scope="col">Всего фото:</th>
+                    <th  scope="col" class="total_amount_cell">{{ photos_count }}</th>
+                </tr>
+<!--                <tr>-->
+<!--                    <th colspan="8" class="text-right" scope="col">Сумма всего:</th>-->
+<!--                    <th  scope="col" class="total_amount_cell">{{ full_amount }}</th>-->
+
+<!--                </tr>-->
+                <form action="http://127.0.0.1:8000/registration/mail_to_files/" method="post">
+                    {% csrf_token %}
+                    <input type = "hidden" name="photos_count" id="photos_count" value="{{photos_count}}">
+                    <input type = "hidden" name="full_amount" id="full_amount" value="{{full_amount}}">
+                    <div class="grp-submit-row">
+                        <button type="submit" class="btn  btn-danger">Скачать</button>
+                        <button type="submit" class="btn  btn-danger">Отправить на почту</button>
+                    </div>
+
+                </form>
+
+                </tfoot>
+
+                </tbody>
+
+            </table>
+<!--            <div class="grp-submit-row">-->
+<!--                <button type="submit" class="btn  btn-danger">Оформить заказ</button>-->
+<!--                <button type="submit" class="btn  btn-danger">Очистить корзину</button>-->
+<!--            </div>-->
+        </div>
+
+
+    </div> <!-- end card-body-->
+</div> <!-- end card-->
+</center>
+
+<!--{% for a in datas %}-->
+<!--<button type="button" class="btn btn-primary" data-toggle="modal" data- -->
+<!--        target="#exampleModal">-->
+<!--    {{a.product_id}}-->
+<!--</button>-->
+<!--{% endfor %}-->
+
+<!--&lt;!&ndash; Modal &ndash;&gt;-->
+<!--<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria- -->
+<!--     labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--    <div class="modal-dialog" role="document">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>-->
+<!--                <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                    <span aria-hidden="true">&times;</span>-->
+<!--                </button>-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+<!--                <tr>-->
+<!--                    <td>{{datas.name}}</td>-->
+<!--                    <td>{{datas.price}}</td>-->
+<!--                    <td>{{datas.category}}</td>-->
+<!--                </tr>-->
+<!--            </div>-->
+<!--            <div class="modal-footer">-->
+<!--                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+<!--                <button type="button" class="btn btn-primary">Save changes</button>-->
+<!--            </div>-->
+<!--        </div>-->
+
+
+
+{%endblock%}

@@ -21,6 +21,8 @@ urlpatterns = [
     path('list_competention/', views.list_competention, name='list_competention'),
     path('contact/', views.contact, name='contact'),
     path('upd_photo/', views.upd_photo, name='upd_photo'),
+    path('files/', views.files, name='files'),
+    path('mail_to_files/', views.files, name='mail_to_files'),
 
 ]
 
