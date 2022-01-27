@@ -46,7 +46,7 @@ class LoginView(TemplateView):
             login(request, user)
 
             return redirect('home')
-        context = {'error': 'вввввввим юзернеймом не найден'}
+        context = {'error': 'Пользователь с таким юзернеймом не найден'}
         return render(request, 'registration/login.html', context)
 
 
