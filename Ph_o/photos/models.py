@@ -16,6 +16,8 @@ class Category(models.Model):
                             blank=False)
     created = models.DateTimeField(auto_now_add=True)
     hold_date = models.DateTimeField(null=True, blank=True)
+    # photos_price
+    # price_for_photo
 
     def __str__(self):
         return self.name
@@ -124,7 +126,6 @@ class PhotoToBuy(models.Model):
     tag = models.ForeignKey(Tags, on_delete=models.CASCADE, null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
     amount = models.DecimalField(max_digits=11, decimal_places=2, default=0, null=True, blank=True)
-
 
     def __str__(self):
         return str(self.id)

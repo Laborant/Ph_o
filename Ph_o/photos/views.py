@@ -153,8 +153,49 @@ def search(request):
                       'photos/search_result.html',
                       context)
     else:
+        category = request.GET.get('category', False)
+        tag_num = request.GET.get('tag_num', False)
+
+        try:
+            tag = Tags.objects.get(name=tag_num)
+            category = Category.objects.get(id=category)
+        except:
+            return render(request,
+                          'photos/search_result.html',
+                          )
+
+        photos = Photo.objects.filter(tags=tag, category=category)
+
+        if category.hold_date:
+            hold_date = category.hold_date.strftime("%m-%d-%Y, %H:%M:%S").split(', ')[0]
+        else:
+            hold_date = ''
+
+        phs = photos.values("tags", "id")
+        # return HttpResponse(phs)
+        num_dict = dict()
+
+        for ph in phs:
+
+            num_str = ""
+
+            tag = ph['tags']
+            # tags_lst = str(tag).split(',')
+
+            nums = Tags.objects.filter(id=tag).values("name")
+            for num in nums:
+                num_str += f"{num['name']}, "
+            num_dict.update({'photo': ph['id'], 'tags': num_str})
+
+        context = {'photos': photos,
+                   'tag_num': tag_num,
+                   'category': category.name,
+                   'created': hold_date,
+                   'photos_num': photos.count(),
+                   'num_dict': num_dict,}
         return render(request,
                       'photos/search_result.html',
+                      context
                       )
 
 
