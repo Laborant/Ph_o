@@ -178,7 +178,7 @@
 <!--                                           {{number.tags}} {% endif%} {%endfor%}-->
                   </small>
                 </div>
-                  <form action="http://127.0.0.1:8080/payments/cart/" method="post">
+                  <form action="http://127.0.0.1:8000/payments/cart/" method="post">
                     {% csrf_token %}
                     <input type = "hidden" name="photo_id" id="photo_id" value="{{photo.id}}">
                     <input type = "hidden" name="amount" id="amount" value="{{photo.price}}">

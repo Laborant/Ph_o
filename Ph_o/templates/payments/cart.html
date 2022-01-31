@@ -67,12 +67,15 @@
                     <th  scope="col" class="total_amount_cell">{{ full_amount }}</th>
 
                 </tr>
-                <form action="http://127.0.0.1:8080/payments/order/" method="post">
+                <form action="http://127.0.0.1:8000/payments/order/" method="post">
                     {% csrf_token %}
                     <input type = "hidden" name="photos_to_buy" id="photos_to_buy" value="{{photo_to_buy}}">
                     <input type = "hidden" name="photos_count" id="photos_count" value="{{photos_count}}">
                     <input type = "hidden" name="full_amount" id="full_amount" value="{{full_amount}}">
-
+                    <div class="grp-submit-row">
+                        <button type="submit" class="btn  btn-danger">Оформить заказ</button>
+                        <button type="submit" class="btn  btn-danger">Очистить корзину</button>
+                    </div>
                 </form>
 
                 </tfoot>

@@ -28,6 +28,7 @@ class CartView(TemplateView):
         photos_to_buy_list = list()
         for photo in photos_to_buy_ids:
             photos_to_buy_list.append(photo['id'])
+       # return HttpResponse(photos_to_buy_list)
 
         arcive_amounts = archive_photos_to_buy.values()
         amounts = photos_to_buy.values()
@@ -157,14 +158,17 @@ class ApproveInvoice(TemplateView):
         return render(request, 'payments/approve_invoice.html', context)
 
     def post(self, request, *args, **kwargs):
-        amount = request.POST.get('full_amount')
-        photos_to_buy = request.POST.get('photos_to_buy')
-        # return HttpResponse(photos_to_buy)
+        amount = request.POST.get('full_amount', None)
+        photos_to_buy = request.POST.get('photos_to_buy', None)
+        #return HttpResponse(photos_to_buy)
         if not request.user.id:
             return redirect('login')
         invoice = models.Invoice.objects.create(user=request.user,
                                                 amount=amount,
                                                 )
+        if not photos_to_buy:
+            return HttpResponse('Add photo to buy')
+
         for photo_to_buy in photos_to_buy[1:-1].split(', '):
             try:
                 archive_photos_to_buy = models.PhotoToBuy.objects.get(id=int(photo_to_buy))
